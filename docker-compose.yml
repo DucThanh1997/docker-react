@@ -1,0 +1,20 @@
+version: '3'
+services:
+    web:
+        stdin_open: true
+        build: 
+            context: . #là nơi chưa các file để build
+            dockerfile: Dockerfile.dev
+        ports: 
+            - "3000:3000"
+        volumes: 
+            - /app/node_modules
+            - .:/app
+    tests:
+        build: 
+            context: . #là nơi chưa các file để build
+            dockerfile: Dockerfile.dev
+        volumes: 
+            - /app/node_modules
+            - .:/app
+        command: ["npm", "run", "test"]
