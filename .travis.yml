@@ -1,0 +1,10 @@
+language: generic
+sudo: required
+services:
+  - docker # tai docker ve
+
+before_install:
+  - docker build -t react -f Dockerfile.dev . # truoc khi chay thi build cai image nay
+
+script:
+  - docker run -e CI=true react npm run test
